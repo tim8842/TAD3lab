@@ -1,0 +1,6 @@
+stages:
+    select_region:
+        cmd: python src/data/test.py
+        deps:
+            - src/data/test.py
+        
