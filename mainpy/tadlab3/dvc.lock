@@ -1,0 +1,9 @@
+schema: '2.0'
+stages:
+  select_region:
+    cmd: python src/data/test.py
+    deps:
+    - path: src/data/test.py
+      hash: md5
+      md5: a234269505186a55b51bd0f70c085854
+      size: 34

@@ -1,0 +1,4 @@
+[core]
+    remote = home
+['remote "home"']
+    url = D:\s3
