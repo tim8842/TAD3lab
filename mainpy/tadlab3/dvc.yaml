@@ -52,10 +52,17 @@ stages:
         outs:
             - data\processed\x_y_data.pkl
     train_model:
-        cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
+        cmd: python src\models\train_model.py SVC_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
         deps:
             - src\models\train_model.py
             - data\processed
         outs:
-            - models\HistGrad_Aug.v1
+            - models\SVC_Aug.v1\model.pkl
+    test_model:
+        cmd: python src\models\test_model.py models\SVC_Aug.v1\model.pkl data\processed\augument_x_y_data.pkl
+        deps:
+            - models\SVC_Aug.v1\model.pkl
+            - src\models\test_model.py
+        outs:
+            - models\SVC_Aug.v1\metrics.json
     

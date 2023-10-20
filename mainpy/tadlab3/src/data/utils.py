@@ -14,7 +14,7 @@ def pickle_puck(data: Any, path_to_data: str) -> None:
         menu: str = "..."
         while menu not in ["yes", "no", "да", "нет"]:
             menu: str = input(
-                f"Файл {path_to_data} существует введите да/yes, чтобы перезаписать, нет/no, чтобы не записывать"
+                f"Файл {path_to_data} существует введите да/yes, чтобы перезаписать, нет/no, чтобы не записывать\n"
             )
         if menu in ["yes", "да"]:
             with open(path_to_data, "wb") as handle:

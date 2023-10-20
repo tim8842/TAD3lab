@@ -168,7 +168,7 @@ stages:
       md5: d4ada0c330ca9346bdd4ba94d110ea35
       size: 3226503346
   train_model:
-    cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
+    cmd: python src\models\train_model.py SVC_Aug.v1 svc data\processed\augument_x_y_data.pkl
     deps:
     - path: data\processed
       hash: md5
@@ -180,10 +180,10 @@ stages:
       md5: f1705e01c65f5520f5830add13931b0f
       size: 2182
     outs:
-    - path: models\HistGrad_Aug.v1\model.pkl
+    - path: models\SVC_Aug.v1\model.pkl
       hash: md5
-      md5: 463cb1f7886aa1480ec12ef2459013f8
-      size: 39875072
+      md5: f819f2ed08906a4fcbddae78edb22550
+      size: 3157191565
   test_model:
     cmd: python src\models\test_model.py models\HistGrad_Aug.v1\model.pkl data\processed\augument_x_y_data.pkl
     deps:

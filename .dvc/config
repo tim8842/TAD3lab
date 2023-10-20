@@ -1,4 +1,5 @@
 [core]
     remote = home
+    autostage = true
 ['remote "home"']
     url = D:\s3
