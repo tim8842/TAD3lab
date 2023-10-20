@@ -7,3 +7,181 @@ stages:
       hash: md5
       md5: a234269505186a55b51bd0f70c085854
       size: 34
+  extract_data:
+    cmd: python src/data/extract_data.py data\raw\butterflies_and_moths.csv
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/extract_data.py
+      hash: md5
+      md5: 551979fb4715598b3949a6651491a2a0
+      size: 436
+  create_plots:
+    cmd: python src/data/classes_diff.py data\raw\butterflies_and_moths.csv
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/classes_diff.py
+      hash: md5
+      md5: 2ef8849d2a694f911c7161ef0da25def
+      size: 2206
+  augumentation:
+    cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw
+      data\interim --data_set_type=train
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/augementation.py
+      hash: md5
+      md5: a09748660e31171eb425fc95dba7d805
+      size: 4111
+    outs:
+    - path: data/interim
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+  augumentation_train:
+    cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw
+      data\interim --data_set_type=train --do_aug=True --limit_of_class_images=200
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/augementation.py
+      hash: md5
+      md5: 92df211b454da04af409738e0157c60c
+      size: 4836
+    outs:
+    - path: data/interim/train
+      hash: md5
+      md5: 61283b791831434a05b5c7dfc6236686.dir
+      size: 220334853
+      nfiles: 20000
+  create_valid_data:
+    cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw
+      data\interim --data_set_type=valid --do_aug=True --limit_of_class_images=10
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/augementation.py
+      hash: md5
+      md5: 92df211b454da04af409738e0157c60c
+      size: 4836
+    outs:
+    - path: data/interim/valid
+      hash: md5
+      md5: 5c1407c89e32c7ddcd0306e029e60fa3.dir
+      size: 11375666
+      nfiles: 1000
+  create_test_data:
+    cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw
+      data\interim --data_set_type=test --do_aug=False
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 944e4813b30f70cac99fa571a9461f76.dir
+      size: 426643622
+      nfiles: 13599
+    - path: src/data/augementation.py
+      hash: md5
+      md5: 92df211b454da04af409738e0157c60c
+      size: 4836
+    outs:
+    - path: data/interim/test
+      hash: md5
+      md5: d18fbf02b368a2af42d20d05ee7be039.dir
+      size: 5997259
+      nfiles: 500
+  create_csv_dataset:
+    cmd: python src\data\create_dataset.py data\raw\butterflies_and_moths.csv data\raw
+      data\interim\data.pkl
+    deps:
+    - path: src/data/create_dataset.py
+      hash: md5
+      md5: 5e298e60a82b6ccebda4c9ade4dfb3a0
+      size: 2579
+    outs:
+    - path: data\interim\data.pkl
+      hash: md5
+      md5: e3009391bf5f7a9f55114a8284d49792
+      size: 262327555
+  create_x_y_data:
+    cmd: python src\data\create_x_y_data.py data\interim\data.pkl data\processed\x_y_data.pkl
+    deps:
+    - path: data/interim
+      hash: md5
+      md5: 794d95b40b9330c3c638bba0c14a6bac.dir
+      size: 915014037
+      nfiles: 21502
+    - path: src/data/create_x_y_data.py
+      hash: md5
+      md5: 28b34c601253f7cdbdad5860403d2942
+      size: 1324
+    outs:
+    - path: data\processed\x_y_data.pkl
+      hash: md5
+      md5: c8f819f8a13c25955a332a804f1d0c20
+      size: 2011801774
+  create_aug_csv_dataset:
+    cmd: python src\data\create_dataset.py data\raw\butterflies_and_moths.csv data\interim
+      data\interim\augument_data.pkl
+    deps:
+    - path: src/data/create_dataset.py
+      hash: md5
+      md5: 5e298e60a82b6ccebda4c9ade4dfb3a0
+      size: 2579
+    outs:
+    - path: data\interim\augument_data.pkl
+      hash: md5
+      md5: 98721c678218833bfb161c89055809e4
+      size: 414978704
+  create_aug_x_y_data:
+    cmd: python src\data\create_x_y_data.py data\interim\augument_data.pkl data\processed\augument_x_y_data.pkl
+    deps:
+    - path: data/interim
+      hash: md5
+      md5: 794d95b40b9330c3c638bba0c14a6bac.dir
+      size: 915014037
+      nfiles: 21502
+    - path: src/data/create_x_y_data.py
+      hash: md5
+      md5: 28b34c601253f7cdbdad5860403d2942
+      size: 1324
+    outs:
+    - path: data\processed\augument_x_y_data.pkl
+      hash: md5
+      md5: d4ada0c330ca9346bdd4ba94d110ea35
+      size: 3226503346
+  train_model:
+    cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
+    deps:
+    - path: data\processed
+      hash: md5
+      md5: 29fc68e60994f37c864db1ad28ca866c.dir
+      size: 5238305184
+      nfiles: 4
+    - path: src\models\train_model.py
+      hash: md5
+      md5: 83804ac2714b9418de4b2792192b255b
+      size: 1999
+    outs:
+    - path: models\HistGrad_Aug.v1
+      hash: md5
+      md5: 5c2caf73043c29067d901a0cda4dc75c.dir
+      size: 40012730
+      nfiles: 1
