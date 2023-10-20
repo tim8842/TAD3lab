@@ -130,13 +130,13 @@ stages:
       nfiles: 21502
     - path: src/data/create_x_y_data.py
       hash: md5
-      md5: 28b34c601253f7cdbdad5860403d2942
-      size: 1324
+      md5: 7e74ba798dcc8be14e3e3f7b7b3ac954
+      size: 1322
     outs:
     - path: data\processed\x_y_data.pkl
       hash: md5
-      md5: c8f819f8a13c25955a332a804f1d0c20
-      size: 2011801774
+      md5: c87655f36aa7a39a047b15ccb0b9db91
+      size: 2088623328
   create_aug_csv_dataset:
     cmd: python src\data\create_dataset.py data\raw\butterflies_and_moths.csv data\interim
       data\interim\augument_data.pkl
@@ -160,43 +160,43 @@ stages:
       nfiles: 21502
     - path: src/data/create_x_y_data.py
       hash: md5
-      md5: 28b34c601253f7cdbdad5860403d2942
-      size: 1324
+      md5: 7e74ba798dcc8be14e3e3f7b7b3ac954
+      size: 1322
     outs:
     - path: data\processed\augument_x_y_data.pkl
       hash: md5
-      md5: d4ada0c330ca9346bdd4ba94d110ea35
-      size: 3226503346
+      md5: 1bcb7fdbbf69f7a6618c981310b516d6
+      size: 3303324900
   train_model:
-    cmd: python src\models\train_model.py SVC_Aug.v1 svc data\processed\augument_x_y_data.pkl
+    cmd: python src\models\train_model.py KN.v1 kn data\processed\x_y_data.pkl
     deps:
     - path: data\processed
       hash: md5
-      md5: 29fc68e60994f37c864db1ad28ca866c.dir
-      size: 5238305184
+      md5: e37a8148af786a9982a29839be273653.dir
+      size: 5391948292
       nfiles: 4
     - path: src\models\train_model.py
       hash: md5
       md5: f1705e01c65f5520f5830add13931b0f
       size: 2182
     outs:
-    - path: models\SVC_Aug.v1\model.pkl
+    - path: models\KN.v1\model.pkl
       hash: md5
-      md5: f819f2ed08906a4fcbddae78edb22550
-      size: 3157191565
+      md5: 16fb6da504acde8249fbd9511f571e01
+      size: 2011344586
   test_model:
-    cmd: python src\models\test_model.py models\HistGrad_Aug.v1\model.pkl data\processed\augument_x_y_data.pkl
+    cmd: python src\models\test_model.py models\KN.v1\model.pkl data\processed\x_y_data.pkl
     deps:
-    - path: models\HistGrad_Aug.v1\model.pkl
+    - path: models\KN.v1\model.pkl
       hash: md5
-      md5: 463cb1f7886aa1480ec12ef2459013f8
-      size: 39875072
+      md5: 16fb6da504acde8249fbd9511f571e01
+      size: 2011344586
     - path: src\models\test_model.py
       hash: md5
-      md5: 45a21013facaa8c3d5617af600df5d38
-      size: 1722
+      md5: 7295e8dd82a44f4eecccda8d0d695178
+      size: 1673
     outs:
-    - path: models\HistGrad_Aug.v1\metrics.json
+    - path: models\KN.v1\metrics.json
       hash: md5
-      md5: cd2c04b9b66147cf43f3a9ab4a56467e
-      size: 95
+      md5: 2db9ff9dc32a34780b099e4d9e71a2f3
+      size: 69
