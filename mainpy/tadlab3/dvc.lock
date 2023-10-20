@@ -177,11 +177,26 @@ stages:
       nfiles: 4
     - path: src\models\train_model.py
       hash: md5
-      md5: 83804ac2714b9418de4b2792192b255b
-      size: 1999
+      md5: f1705e01c65f5520f5830add13931b0f
+      size: 2182
     outs:
-    - path: models\HistGrad_Aug.v1
+    - path: models\HistGrad_Aug.v1\model.pkl
       hash: md5
-      md5: 5c2caf73043c29067d901a0cda4dc75c.dir
-      size: 40012730
-      nfiles: 1
+      md5: 463cb1f7886aa1480ec12ef2459013f8
+      size: 39875072
+  test_model:
+    cmd: python src\models\test_model.py models\HistGrad_Aug.v1\model.pkl data\processed\augument_x_y_data.pkl
+    deps:
+    - path: models\HistGrad_Aug.v1\model.pkl
+      hash: md5
+      md5: 463cb1f7886aa1480ec12ef2459013f8
+      size: 39875072
+    - path: src\models\test_model.py
+      hash: md5
+      md5: 45a21013facaa8c3d5617af600df5d38
+      size: 1722
+    outs:
+    - path: models\HistGrad_Aug.v1\metrics.json
+      hash: md5
+      md5: cd2c04b9b66147cf43f3a9ab4a56467e
+      size: 95
