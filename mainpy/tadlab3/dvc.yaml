@@ -1,6 +1,61 @@
 stages:
-    select_region:
-        cmd: python src/data/test.py
+    create_plots: 
+        cmd: python src/data/classes_diff.py data\raw\butterflies_and_moths.csv
         deps:
-            - src/data/test.py
-        
+            - src/data/classes_diff.py
+            - data/raw
+    augumentation_train:
+        cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw data\interim --data_set_type=train --do_aug=True --limit_of_class_images=200
+        deps:
+            - src/data/augementation.py
+            - data/raw
+        outs:
+            - data/interim/train
+    create_valid_data:
+        cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw data\interim --data_set_type=valid --do_aug=True --limit_of_class_images=10
+        deps:
+            - src/data/augementation.py
+            - data/raw
+        outs:
+            - data/interim/valid
+    create_test_data:
+        cmd: python src\data\augementation.py data\raw\butterflies_and_moths.csv data\raw data\interim --data_set_type=test --do_aug=False
+        deps:
+            - src/data/augementation.py
+            - data/raw
+        outs:
+            - data/interim/test
+    create_csv_dataset:
+        cmd: python src\data\create_dataset.py data\raw\butterflies_and_moths.csv data\raw data\interim\data.pkl
+        deps:
+            - src/data/create_dataset.py
+        outs:
+            - data\interim\data.pkl
+    create_aug_csv_dataset:
+        cmd: python src\data\create_dataset.py data\raw\butterflies_and_moths.csv data\interim data\interim\augument_data.pkl
+        deps:
+            - src/data/create_dataset.py
+        outs:
+            - data\interim\augument_data.pkl
+    create_aug_x_y_data:
+        cmd: python src\data\create_x_y_data.py data\interim\augument_data.pkl data\processed\augument_x_y_data.pkl
+        deps:
+            - src/data/create_x_y_data.py
+            - data/interim
+        outs:
+            - data\processed\augument_x_y_data.pkl
+    create_x_y_data:
+        cmd: python src\data\create_x_y_data.py data\interim\data.pkl data\processed\x_y_data.pkl
+        deps:
+            - src/data/create_x_y_data.py
+            - data/interim
+        outs:
+            - data\processed\x_y_data.pkl
+    train_model:
+        cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
+        deps:
+            - src\models\train_model.py
+            - data\processed
+        outs:
+            - models\HistGrad_Aug.v1
+    
