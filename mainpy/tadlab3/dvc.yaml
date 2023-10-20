@@ -65,4 +65,8 @@ stages:
             - src\models\test_model.py
         outs:
             - models\HistGrad.v1\metrics.json
-    
+    vizualize:
+        cmd: python src\visualization\visualize.py models\
+        deps:
+            - models
+            - src\visualization\visualize.py

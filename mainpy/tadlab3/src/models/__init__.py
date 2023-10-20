@@ -1,2 +1,2 @@
-import predict_model
+import test_model
 import train_model
