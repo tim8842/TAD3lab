@@ -168,7 +168,7 @@ stages:
       md5: 1bcb7fdbbf69f7a6618c981310b516d6
       size: 3303324900
   train_model:
-    cmd: python src\models\train_model.py KN.v1 kn data\processed\x_y_data.pkl
+    cmd: python src\models\train_model.py HistGrad.v1 hgrad data\processed\x_y_data.pkl
     deps:
     - path: data\processed
       hash: md5
@@ -180,23 +180,23 @@ stages:
       md5: f1705e01c65f5520f5830add13931b0f
       size: 2182
     outs:
-    - path: models\KN.v1\model.pkl
+    - path: models\HistGrad.v1\model.pkl
       hash: md5
-      md5: 16fb6da504acde8249fbd9511f571e01
-      size: 2011344586
+      md5: b95b485de21e3c5c547582b3a9e2f22e
+      size: 39806243
   test_model:
-    cmd: python src\models\test_model.py models\KN.v1\model.pkl data\processed\x_y_data.pkl
+    cmd: python src\models\test_model.py models\HistGrad.v1\model.pkl data\processed\x_y_data.pkl
     deps:
-    - path: models\KN.v1\model.pkl
+    - path: models\HistGrad.v1\model.pkl
       hash: md5
-      md5: 16fb6da504acde8249fbd9511f571e01
-      size: 2011344586
+      md5: b95b485de21e3c5c547582b3a9e2f22e
+      size: 39806243
     - path: src\models\test_model.py
       hash: md5
       md5: 7295e8dd82a44f4eecccda8d0d695178
       size: 1673
     outs:
-    - path: models\KN.v1\metrics.json
+    - path: models\HistGrad.v1\metrics.json
       hash: md5
-      md5: 2db9ff9dc32a34780b099e4d9e71a2f3
-      size: 69
+      md5: f5efc1c09825f47c44ff073950574e6a
+      size: 70
