@@ -1,33 +1,12 @@
 import sys
 import os
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import numpy as np
-=======
-import pandas as pd
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-import pandas as pd
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-import pandas as pd
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_validate
 from sklearn.svm import SVC
 import click
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 from typing import Any, Dict, List, Tuple
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
 
 sys.path.append(os.path.join(sys.path[0], "../data"))
 from utils import pickle_unpuck, pickle_puck
@@ -42,28 +21,10 @@ def train_model(name_of_model: str, type_of_model: str, path_to_data: str) -> No
     Тренировка моделей
     :param: name_of_model: название модели (можете указать версию или что-либо еще)
             type_of_model: типо модели (предназначено для выбора моделей из словаря)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             path_to_data: путь для конечных значений
     :return: None
     """
     models: Dict[str, Any] = {
-=======
-    :return: None
-    """
-    models = {
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    :return: None
-    """
-    models = {
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    :return: None
-    """
-    models = {
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
         "kn": KNeighborsClassifier(),
         "svc": SVC(verbose=1),
         "hgrad": HistGradientBoostingClassifier(
@@ -75,30 +36,10 @@ def train_model(name_of_model: str, type_of_model: str, path_to_data: str) -> No
             max_leaf_nodes=6,
         ),
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     data: List[Tuple[np.ndarray]] = pickle_unpuck(path_to_data)
     x_train, y_train = data[0]
     print(len(x_train))
     model: Any = models[type_of_model]
-=======
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-    data = pickle_unpuck(path_to_data)
-    x_train, y_train = data[0]
-    print(len(x_train))
-    x_test, y_test = data[1]
-    model = models[type_of_model]
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
     model.fit(list(x_train), list(y_train))
     # # cross_model = cross_validate(
     # #     model,
@@ -110,28 +51,10 @@ def train_model(name_of_model: str, type_of_model: str, path_to_data: str) -> No
     # #     return_train_score=True,
     # #     verbose=1,
     # # )
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     path_to_model: str = os.path.join("models", name_of_model)
     if not os.path.exists(path_to_model):
         os.mkdir(path_to_model)
     pickle_puck(model, os.path.join(path_to_model, "model.pkl"))
-=======
-    path_to_model = os.path.join("models", name_of_model)
-    os.mkdir(path_to_model)
-    pickle_puck(model, os.path.join(path_to_model, "cross_val.pkl"))
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    path_to_model = os.path.join("models", name_of_model)
-    os.mkdir(path_to_model)
-    pickle_puck(model, os.path.join(path_to_model, "cross_val.pkl"))
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    path_to_model = os.path.join("models", name_of_model)
-    os.mkdir(path_to_model)
-    pickle_puck(model, os.path.join(path_to_model, "cross_val.pkl"))
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
 
 
 if __name__ == "__main__":

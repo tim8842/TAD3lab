@@ -52,26 +52,11 @@ stages:
         outs:
             - data\processed\x_y_data.pkl
     train_model:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         cmd: python src\models\train_model.py HistGrad.v1 hgrad data\processed\x_y_data.pkl
-=======
-        cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-        cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-        cmd: python src\models\train_model.py HistGrad_Aug.v1 hgrad data\processed\augument_x_y_data.pkl
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
         deps:
             - src\models\train_model.py
             - data\processed
         outs:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             - models\HistGrad.v1\model.pkl
     test_model:
         cmd: python src\models\test_model.py models\HistGrad.v1\model.pkl data\processed\x_y_data.pkl
@@ -85,15 +70,3 @@ stages:
         deps:
             - models
             - src\visualization\visualize.py
-=======
-            - models\HistGrad_Aug.v1
-    
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-            - models\HistGrad_Aug.v1
-    
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-            - models\HistGrad_Aug.v1
-    
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c

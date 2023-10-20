@@ -27,23 +27,8 @@ def create_x_y_data(path_from_data, path_to_data: str) -> None:
     test = data.loc[data["data set"] == "test"]
     x_train = train["img"].values
     y_train = train["class id"].values
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     x_test = test["img"].values
     y_test = test["class id"].values
-=======
-    x_test = train["img"].values
-    y_test = train["class id"].values
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    x_test = train["img"].values
-    y_test = train["class id"].values
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
-=======
-    x_test = train["img"].values
-    y_test = train["class id"].values
->>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
     res_list = [(x_train, y_train), (x_test, y_test)]
     pickle_puck(res_list, path_to_data)
 
