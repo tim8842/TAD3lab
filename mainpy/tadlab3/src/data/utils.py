@@ -16,7 +16,11 @@ def pickle_puck(data: Any, path_to_data: str) -> None:
             menu: str = input(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 f"Файл {path_to_data} существует введите да/yes, чтобы перезаписать, нет/no, чтобы не записывать\n"
+=======
+                f"Файл {path_to_data} существует введите да/yes, чтобы перезаписать, нет/no, чтобы не записывать"
+>>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
 =======
                 f"Файл {path_to_data} существует введите да/yes, чтобы перезаписать, нет/no, чтобы не записывать"
 >>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c

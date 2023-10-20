@@ -23,10 +23,13 @@ var/
 .installed.cfg
 *.egg
 notebooks/
+<<<<<<< HEAD
 
 data/
 *.rar
 
+=======
+>>>>>>> dfa0adf2da6471ebfd023187c9a4ec366cb95a0c
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
