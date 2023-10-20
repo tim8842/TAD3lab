@@ -22,6 +22,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+notebooks/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -71,6 +72,8 @@ target/
 
 # Spyder
 .spyproject/
+
+.notebooks/
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
